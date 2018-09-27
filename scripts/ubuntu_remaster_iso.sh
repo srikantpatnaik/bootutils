@@ -11,9 +11,26 @@ PROG_NAME=$(basename ${PROG_PATH})
 # Needs root privileges (to mount)
 exit_if_not_root
 
-SQUASHFS_PATH=casper/filesystem.squashfs
-MANIFEST_PATH=casper/filesystem.manifest
-SIZE_FILE=casper/filesystem.size
+while true; do
+
+    echo 
+    echo "Select 1 for Ubuntu based live CD"
+    echo -n "Select 2 for Debian based live CD : "
+    read input
+    if [ $input -eq 1 ]; then
+        squashfs_path=casper
+        break
+    elif [ $input -eq 2 ]; then
+        squashfs_path=live
+        break
+    else
+        echo "Select the right option to proceed"
+    fi
+done  
+
+SQUASHFS_PATH=$squashfs_path/filesystem.squashfs
+MANIFEST_PATH=$squashfs_path/filesystem.manifest
+SIZE_FILE=$squashfs_path/filesystem.size
 EFI_IMG_FILE=boot/grub/efi.img
 
 # Check cmdline args
@@ -54,6 +71,6 @@ else
     echo "No REMASTER_CMDS_DIR. Not running any remaster commands"
 fi
 
-update_squashfs "$EXTRACT_DIR" "$SQUASHFS_PATH" "${MANIFEST_PATH}" "${SIZE_FILE}"
-update_iso "$EXTRACT_DIR" "${OUTPUT_ISO}" "$ISO_PATH" "$EFI_IMG_FILE" 
-rmdir "$EXTRACT_DIR"
+#update_squashfs "$EXTRACT_DIR" "$SQUASHFS_PATH" "${MANIFEST_PATH}" "${SIZE_FILE}"
+#update_iso "$EXTRACT_DIR" "${OUTPUT_ISO}" "$ISO_PATH" "$EFI_IMG_FILE" 
+#rmdir "$EXTRACT_DIR"
