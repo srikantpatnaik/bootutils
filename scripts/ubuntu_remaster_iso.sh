@@ -71,6 +71,6 @@ else
     echo "No REMASTER_CMDS_DIR. Not running any remaster commands"
 fi
 
-#update_squashfs "$EXTRACT_DIR" "$SQUASHFS_PATH" "${MANIFEST_PATH}" "${SIZE_FILE}"
-#update_iso "$EXTRACT_DIR" "${OUTPUT_ISO}" "$ISO_PATH" "$EFI_IMG_FILE" 
-#rmdir "$EXTRACT_DIR"
+update_squashfs "$EXTRACT_DIR" "$SQUASHFS_PATH" "${MANIFEST_PATH}" "${SIZE_FILE}"
+update_iso "$EXTRACT_DIR" "${OUTPUT_ISO}" "$ISO_PATH" "$EFI_IMG_FILE" 
+rmdir "$EXTRACT_DIR"
